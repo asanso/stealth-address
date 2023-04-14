@@ -1,4 +1,8 @@
 load('csidh.sage')
+load('csi-fish.sage')
+
+
+A,B = init_relation_lattices()
 
 #Bob
 #private
@@ -11,10 +15,17 @@ r =private()
 #publish
 R = action(base, r)
 Sa = action(M, r)
-#hashS = Sa[0]
-#Pa  = M + hashS*G 
+Sa_reduced = 100
+hashS = reduce(Sa_reduced,A,B)
+
+P = action(M,hashS)
 
 #Bob
 Sb = action(R, m)
+pv = []
+for i,_ in enumerate(m):
+    pv.append(m[i]+hashS[i])
 
 assert Sa == Sb
+assert P == action(base,pv)
+
