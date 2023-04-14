@@ -1,7 +1,6 @@
 load('csidh.sage')
 load('csi-fish.sage')
 
-
 A,B = init_relation_lattices()
 
 #Bob
@@ -15,7 +14,8 @@ r =private()
 #publish
 R = action(base, r)
 Sa = action(M, r)
-Sa_reduced = 100
+#short coming of the sage csi-fish implementation
+Sa_reduced = int(Sa) % 2^20
 hashS = reduce(Sa_reduced,A,B)
 
 P = action(M,hashS)
