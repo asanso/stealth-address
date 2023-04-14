@@ -12,3 +12,29 @@ G = E([Gx,Gy])
 # assert n*G == 0
 # assert n.is_prime()
 # assert E.count_points() == n # all these curves have cofactor 1
+
+
+#Bob
+
+#private
+m = ZZ.random_element(n)
+#public
+M = m*G
+
+#Alice
+
+#private
+r = ZZ.random_element(n)
+#publish
+R = r*G
+Sa = r * M
+hashS = Sa[0]
+Pa  = M + hashS*G 
+
+#Bob
+Sb = m*R
+Pb = M + hashS*G 
+p = m+hashS
+
+assert Sa == Sb
+assert Pa == Pb == p*G
