@@ -1,3 +1,6 @@
+import hashlib 
+h = hashlib.sha256()
+
 # 256k1
 p = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F
 a = 0x0000000000000000000000000000000000000000000000000000000000000000
@@ -9,11 +12,7 @@ n = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141
 # To verify some properties:
 E = EllipticCurve(GF(p),[a,b])
 G = E([Gx,Gy])
-# assert n*G == 0
-# assert n.is_prime()
-# assert E.count_points() == n # all these curves have cofactor 1
-
-
+ 
 #Bob
 
 #private
@@ -28,7 +27,12 @@ r = ZZ.random_element(n)
 #publish
 R = r*G
 Sa = r * M
-hashS = Sa[0]
+s = ''
+s+=str(Sa[0])
+s+=str(Sa[1])
+h.update(s.encode())
+
+hashS = int(h.hexdigest(), 16)
 Pa  = M + hashS*G 
 
 #Bob
