@@ -32,7 +32,7 @@ s+=str(Sa[0])
 s+=str(Sa[1])
 h.update(s.encode())
 
-hashS = int(h.hexdigest(), 16)
+hashS = (int(h.hexdigest(), 16)) % n
 Pa  = M + hashS*G 
 
 #Bob
