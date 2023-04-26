@@ -1,4 +1,4 @@
-# stealth-address
+# Usage
 
 ```shell
 sage stealth-address.sage
