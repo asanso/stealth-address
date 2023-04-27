@@ -23,16 +23,16 @@ s += str(Sa)
 h.update(s.encode())
 hashS = (int(h.hexdigest(), 16)) % class_number
 #short coming of the sage csi-fish implementation
-Sa_reduced = hashS % 2^20
-hashS = reduce(Sa_reduced,A,B)
+hashS = hashS % 2^20
+hashS_reduced = reduce(hashS,A,B)
 
-P = action(M,hashS)
+P = action(M,hashS_reduced)
 
 #Bob
 Sb = action(R, m)
 pv = []
 for i,_ in enumerate(m):
-    pv.append(m[i]+hashS[i])
+    pv.append(m[i]+hashS_reduced[i])
 
 assert Sa == Sb
 assert P == action(base,pv)
