@@ -28,6 +28,8 @@ r = ZZ.random_element(n)
 R = r*G
 Sa = r * M
 s = ''
+s+=str(R[0])
+s+=str(R[1])
 s+=str(Sa[0])
 s+=str(Sa[1])
 h.update(s.encode())

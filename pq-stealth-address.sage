@@ -19,6 +19,7 @@ R = action(base, r)
 Sa = action(M, r)
 
 s = ''
+s += str(R)
 s += str(Sa)
 h.update(s.encode())
 hashS = (int(h.hexdigest(), 16)) % class_number
